@@ -1,0 +1,182 @@
+import React from "react";
+import { useState, useEffect } from "react";
+
+import HelloContent from "./HelloContent";
+import Players from "./Players";
+import Players02 from "./Players02";
+
+import ListKey from "./ListKey";
+import AddItem from "./AddItem";
+import SearchItem from "./SearchItem";
+import Counter from "./Counter";
+
+export default function HelloWorld() {
+  
+  const myNameVar = "var-one";
+
+  const itemArray = ["rice", "chicken", "coockies"];
+
+  const propsVal = "Prop_Sample";
+
+  const players = [
+    { name: "Lebron James", number: 23 },
+    { name: "Michael Jordan", number: 23 },
+    { name: "Kobe Bryant", number: 8 },
+  ];
+
+  // List and Key
+  // List and Key
+  // List and Key
+  const [items, setItems] = useState( JSON.parse( localStorage.getItem('shoppinglist') ) || [] );
+
+      // option 1
+      // useState default value
+      // [
+      //   { id: 1, checked: false, item: "TOTO 01" },
+      //   { id: 2, checked: true, item: "TOTO 02" },
+      //   { id: 3, checked: false, item: "TOTO 03" },
+      // ]
+      
+      // option 2
+      // useState JSON
+      // JSON.parse( localStorage.getItem('shoppinglist') )
+      
+  // USEEFFECT
+  // USEEFFECT
+  // USEEFFECT
+  console.log("before useEffect");
+
+  useEffect( () => { 
+    console.log("useEffect run");
+    localStorage.setItem('shoppinglist', JSON.stringify(items)); 
+  }, [items] )
+
+  console.log("after useEffect");
+
+
+  // HANDLE AREA
+  // HANDLE AREA
+  // HANDLE AREA
+  const handleCheck = (searchID) => {
+    const listItems = items.map( (item) =>
+      item.id === searchID ? { ...item, checked: !item.checked } : item
+    );
+    updateItemList(listItems);
+  };
+
+  const handleDelete = (deleteID) => {
+    const listItems = items.filter((item) => item.id !== deleteID);
+    updateItemList(listItems);
+  };
+
+  // UPDATE ITEM - set & localStorage
+  // UPDATE ITEM - set & localStorage
+  // UPDATE ITEM - set & localStorage
+  const updateItemList = (listItems) => {
+    setItems(listItems);    
+  }
+
+  // AddItem
+  // AddItem
+  // AddItem
+  const [newItem, setNewItem] = useState("");
+
+  const addItem = (item) => {  
+    // console.log("test add item: " + item);
+
+    const id = items.length ? (items[items.length - 1].id + 1) : 1;    
+    // TEST array length or "items"
+    // console.log(item length w/ plus: + "1 = " + id);
+
+    // NEW ITEM TO ADD AS ARRAY
+    const myNewItem = {
+      id,
+      checked: false,
+      item,
+    };
+    const listItems = [...items, myNewItem];
+
+    // UPDATE STATE
+    updateItemList(listItems);
+  };
+
+
+  const handleSubmit = (e) => {    
+    e.preventDefault(); //prevent refresh    
+    if (!newItem) return; //check if now empty
+
+    addItem(newItem); //function to add newItem
+    setNewItem(""); //to clear input field
+  };
+
+  // SEARCH
+  // SEARCH
+  // SEARCH
+  const [searchItem, setSearchItem] = useState("");
+
+  const handleSearch = (e) => {
+      
+      e.preventDefault();
+      
+      if (!searchItem) return;
+  
+      //console.log("submitted");
+      console.log(searchItem);
+      //console.log(searchItem);
+  
+      //addItem(searchItem);
+  
+      //searchItem("");    
+  };
+
+
+  return (
+    <div>
+      <h1>Hello World! {myNameVar}</h1>
+      <p>Content Here</p>
+
+      {/* <h1>Foods</h1>
+      <ul>
+        {itemArray.map((item) => {
+          return <li>{item}</li>;
+        })}
+      </ul> */}
+      {/* <HelloContent propsName={propsVal} /> */}
+
+      {/* pass whole props to statefull component*/}
+      {/* <Players playerList={players} /> */}
+
+      {/* stateless component */}
+      {/* mapping is here in page, component will posting and designing the output only */}
+      {/* {players.map((player) => {
+        return <Players02 playerName={player.name} playerNum={player.number} />;
+      })} */}
+
+      {/* List and Key */}
+      {/* List and Key */}
+      {/* List and Key */}
+      {items.length < 1 ? (
+        "Empty List"
+      ) : (
+        <ListKey
+          items={items.filter( 
+            item => ( (item.item).toLowerCase()).includes(searchItem.toLowerCase() )
+          )}
+          handleCheck={handleCheck}
+          handleDelete={handleDelete}
+        />
+      )}
+      <AddItem
+        newItem={newItem}
+        setNewItem={setNewItem}
+        handleSubmit={handleSubmit}
+      />
+      <SearchItem
+        searchItem={searchItem}
+        setSearchItem={setSearchItem}
+        handleSearch={handleSearch}
+      />
+      <Counter totalCounter={items.length} />
+    </div>
+  );
+}

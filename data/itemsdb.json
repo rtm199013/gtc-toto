@@ -1,0 +1,74 @@
+{
+  "itemsdb": [
+    {
+      "id": "1",
+      "checked": false,
+      "item": "cake"
+    },
+    {
+      "id": "2",
+      "checked": false,
+      "item": "pizza"
+    },
+    {
+      "id": "3",
+      "checked": false,
+      "item": "pasta"
+    },
+    {
+      "id": "4",
+      "checked": false,
+      "item": "coke"
+    },
+    {
+      "id": "5",
+      "checked": false,
+      "item": "candy"
+    },
+    {
+      "id": "6",
+      "checked": false,
+      "item": "salad"
+    },
+    {
+      "id": "7",
+      "checked": false,
+      "item": "fruits"
+    },
+    {
+      "id": "8",
+      "checked": false,
+      "item": "pizza"
+    },
+    {
+      "id": "9",
+      "checked": true,
+      "item": "pizza"
+    },
+    {
+      "id": "10",
+      "checked": true,
+      "item": "pizza"
+    },
+    {
+      "id": "11",
+      "checked": true,
+      "item": "banana"
+    },
+    {
+      "id": "12",
+      "checked": false,
+      "item": "sample"
+    },
+    {
+      "id": "13",
+      "checked": true,
+      "item": "test"
+    },
+    {
+      "id": "14",
+      "checked": true,
+      "item": "a"
+    }
+  ]
+}
