@@ -16,7 +16,7 @@ export default function ListKey( {items,handleCheck, handleDelete} ) {
               />
 
               <label
-                onDoubleClick={ () => handleCheck(item.id) }>
+                onDoubleClick={ () => handleCheck(item) }>
                 {item.item}
               </label>    
               

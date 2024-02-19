@@ -2,22 +2,22 @@
   "itemsdb": [
     {
       "id": "1",
-      "checked": true,
+      "checked": false,
       "item": "cake"
     },
     {
       "id": "2",
-      "checked": true,
+      "checked": false,
       "item": "pizza"
     },
     {
       "id": "3",
-      "checked": true,
+      "checked": false,
       "item": "coke"
     },
     {
       "id": "4",
-      "checked": false,
+      "checked": true,
       "item": "candy"
     },
     {
