@@ -123,9 +123,8 @@ export default function HelloWorld() {
       },
       body: JSON.stringify({ checked: updateItem[0].checked })
     };
+    //console.log(updateOptions);    
 
-    //console.log(updateOptions);
-    //const reqURL = `${API_URL}?id=${searchID}`;
     const reqURL = `${API_URL}/${searchID}`;
     console.log("Link"); 
     console.log(reqURL);
@@ -137,16 +136,25 @@ export default function HelloWorld() {
 
 
 
-  const handleDelete = (deleteID) => {
+  const handleDelete = async (deleteID) => {
     const listItems = items.filter((item) => item.id !== deleteID);
     updateItemList(listItems);
+
+    const deleteOptions = {
+      method: 'DELETE',
+    };
+
+    const reqURL = `${API_URL}/${deleteID}`;
+
+    const result = await apiRequest(reqURL, deleteOptions);
+    if (result) setFetchError(result);
   };
 
   // UPDATE ITEM - set & localStorage
   // UPDATE ITEM - set & localStorage
   // UPDATE ITEM - set & localStorage
   const updateItemList = (listItems) => {
-    setItems(listItems);    
+    setItems(listItems);
   }
 
   // AddItem
@@ -156,12 +164,13 @@ export default function HelloWorld() {
 
   const addItem = async (item) => {
 
-    const id = items.length ? ( parseInt(items[items.length - 1].id) + 1 ) : 1;    
+    const itemID = items.length ? ( parseInt(items[items.length - 1].id) + 1 ) : 1;    
     // TEST array length or "items"
-    console.log(id);
+    console.log(itemID);
+    
 
     const myNewItem = {
-      id,
+      id: `${itemID}`,
       checked: false,
       item,
     };// NEW ITEM TO ADD AS ARRAY
